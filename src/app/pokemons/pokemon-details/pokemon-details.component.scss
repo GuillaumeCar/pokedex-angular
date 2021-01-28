@@ -1,5 +1,13 @@
 audio {
   margin-left: 20px;
+  display: none;
+}
+
+mat-icon {
+  margin-left: 20px;
+}
+mat-icon:hover {
+  cursor: pointer;
 }
 
 img {

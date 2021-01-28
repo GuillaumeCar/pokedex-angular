@@ -10,8 +10,9 @@
         <mat-grid-tile [colspan]="1" [rowspan]="2">
             <mat-list>
                 <mat-list-item>
-                    <span>{{pokemon.name}}   </span>
-                    <audio autoplay controls src="assets/audio/{{pokemon.id}}.mp3"></audio>
+                    <span>{{pokemon.name}} </span>
+                    <mat-icon (click)="pokemonSound.play()">play_circle_outline</mat-icon>
+                    <audio #pokemonSound autoplay controls src="assets/audio/{{pokemon.id}}.mp3"></audio>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-chip-list

@@ -12,6 +12,7 @@ import {PokemonDetailsComponent} from "./pokemons/pokemon-details/pokemon-detail
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatChipsModule} from "@angular/material/chips";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatChipsModule} from "@angular/material/chips";
     MatLineModule,
     MatCardModule,
     MatGridListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
