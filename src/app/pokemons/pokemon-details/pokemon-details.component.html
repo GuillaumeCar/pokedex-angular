@@ -1,0 +1,35 @@
+<div *ngIf="pokemon">
+    <button (click)="goBack()">Go back</button>
+    <mat-grid-list cols="2" rowHeight="150px">
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+            <div style="text-align: center">
+                <img mat-card-sm-image src="assets/img/official-artwork/{{pokemon.id}}.png"><br>
+                <div>No. {{pokemon.id | number : '3.0'}}</div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="2">
+            <mat-list>
+                <mat-list-item>
+                    <span>{{pokemon.name}}   </span>
+                    <audio autoplay controls src="assets/audio/{{pokemon.id}}.mp3"></audio>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-chip-list
+                            class="example-chip"
+                            cdkDropList>
+                        <mat-chip
+                                class="example-box"
+                                *ngFor="let type of pokemon.types">
+                            {{type}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-list-item>
+                <mat-list-item> Taille : {{pokemon.height | number: '1.1'}} m </mat-list-item>
+                <mat-list-item> Poids : {{pokemon.weight | number: '1.1'}} kg </mat-list-item>
+            </mat-list>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+            {{pokemon.description}}
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
