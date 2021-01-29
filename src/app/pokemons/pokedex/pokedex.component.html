@@ -1,0 +1,8 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer mode="side" opened>
+        <app-pokemon-list (getPokemonDetailsEmitter)="onGetPokemonDetails($event)"></app-pokemon-list>
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -1,4 +1,8 @@
-mat-list {
+.search-results {
+  height: 99%;
   overflow: auto;
-  //height: 200px;
+}
+
+a:hover {
+  cursor: pointer;
 }
