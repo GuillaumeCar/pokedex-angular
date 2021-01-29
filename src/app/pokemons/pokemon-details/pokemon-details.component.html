@@ -1,5 +1,5 @@
 <div *ngIf="pokemon">
-    <button (click)="goBack()">Go back</button>
+    <button (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
     <mat-grid-list cols="2" rowHeight="150px">
         <mat-grid-tile [colspan]="1" [rowspan]="2">
             <div style="text-align: center">
@@ -11,7 +11,7 @@
             <mat-list>
                 <mat-list-item>
                     <span>{{pokemon.name}} </span>
-                    <mat-icon (click)="pokemonSound.play()">play_circle_outline</mat-icon>
+                    <mat-icon class="play-button" (click)="pokemonSound.play()">play_circle_outline</mat-icon>
                     <audio #pokemonSound autoplay controls src="assets/audio/{{pokemon.id}}.mp3"></audio>
                 </mat-list-item>
                 <mat-list-item>

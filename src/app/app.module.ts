@@ -13,6 +13,7 @@ import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatIconModule} from "@angular/material/icon";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatIconModule} from "@angular/material/icon";
     MatCardModule,
     MatGridListModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    InfiniteScrollModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

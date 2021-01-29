@@ -11,16 +11,22 @@ export class PokemonListComponent implements OnInit {
 
   data: Pokemon[];
   limit = 0;
-  offset = 0;
+  limitMax = 151;
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    this.pokemonService.getPokemons().subscribe(myResult => {
-      this.data = myResult.data;
-      this.limit = myResult.limit;
-      this.offset = myResult.offset;
-    })
+    this.pokemonService.getPokemons(this.limit += 20).subscribe(myResult => {
+      this.data = [...myResult.data];
+    });
+  }
+
+  onScroll(): void {
+    if (this.limit < 151) {
+      this.pokemonService.getPokemons(this.limit += 20).subscribe(myResult => {
+        this.data = [...myResult.data];
+      });
+    }
   }
 
 }

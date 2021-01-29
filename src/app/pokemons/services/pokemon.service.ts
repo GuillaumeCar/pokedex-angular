@@ -8,13 +8,18 @@ import {ApiResponse} from "../models/apiResponse.model";
 })
 export class PokemonService {
 
-  apiUrl = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io'
+  apiUrl = 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io';
 
   constructor(
       private http: HttpClient
   ) { }
 
-  getPokemons(): Observable<ApiResponse> {
+  getPokemons(limit?: number, offset?: number): Observable<ApiResponse> {
+    if (limit && offset) {
+      return this.http.get<ApiResponse>(this.apiUrl + '/pokemons?limit=' + limit + '&offset=' + offset);
+    } else if (limit) {
+      return this.http.get<ApiResponse>(this.apiUrl + '/pokemons?limit=' + limit);
+    }
     return this.http.get<ApiResponse>(this.apiUrl + '/pokemons');
   }
 

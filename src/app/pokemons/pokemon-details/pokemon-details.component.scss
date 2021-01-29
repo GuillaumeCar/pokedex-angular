@@ -3,7 +3,7 @@ audio {
   display: none;
 }
 
-mat-icon {
+mat-icon.play-button {
   margin-left: 20px;
 }
 mat-icon:hover {
@@ -12,4 +12,8 @@ mat-icon:hover {
 
 img {
   height: 200px;
+}
+button {
+  margin-left: 20px;
+  margin-top: 30px;
 }
