@@ -45,7 +45,6 @@ export class PokemonListComponent implements OnInit {
                     this.data = myResult.data;
                 });
             } else {
-                // offset = 0 to reload basic pokemons tab.
                 this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
                         this.data = myResult.data;
                     }
