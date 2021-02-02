@@ -1,11 +1,13 @@
 import {
-    Component,
+    Component, ElementRef,
     EventEmitter,
     OnInit,
-    Output
+    Output, ViewChild
 } from '@angular/core';
 import {PokemonService} from "../services/pokemon.service";
 import {Pokemon} from "../models/pokemon.model";
+import {debounceTime, map} from "rxjs/operators";
+import {fromEvent} from "rxjs/internal/observable/fromEvent";
 
 @Component({
     selector: 'app-pokemon-list',
@@ -19,6 +21,9 @@ export class PokemonListComponent implements OnInit {
     limitMax = 151;
     search!: string;
 
+    @ViewChild('searchBox')
+    private searchBox!: ElementRef;
+
     @Output() getPokemonDetailsEmitter = new EventEmitter<Pokemon>();
 
     constructor(private pokemonService: PokemonService) {
@@ -27,6 +32,25 @@ export class PokemonListComponent implements OnInit {
     ngOnInit(): void {
         this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
             this.data = [...myResult.data];
+        });
+    }
+
+    ngAfterViewInit(): void {
+        fromEvent(this.searchBox.nativeElement, 'keyup').pipe(
+            map((i: any) => i.currentTarget.value),
+            debounceTime(250)
+        ).subscribe((v) => {
+            if (v !== '') {
+                this.pokemonService.getPokemonsBySearch(v).subscribe((myResult) => {
+                    this.data = myResult.data;
+                });
+            } else {
+                // offset = 0 to reload basic pokemons tab.
+                this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
+                        this.data = myResult.data;
+                    }
+                );
+            }
         });
     }
 
@@ -43,15 +67,14 @@ export class PokemonListComponent implements OnInit {
     }
 
     searchPokemon(event: any): void {
-        if (event != '' && event != undefined) {
-            this.pokemonService.getPokemonsBySearch(event).subscribe(myResult => {
-                this.data = myResult.data;
-            });
-        } else {
-            this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
-                this.data = myResult.data;
-            });
-        }
+        // if (event != '' && event != undefined) {
+        //     this.pokemonService.getPokemonsBySearch(event).subscribe(myResult => {
+        //         this.data = myResult.data;
+        //     });
+        // } else {
+        //     this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
+        //         this.data = myResult.data;
+        //     });
+        // }
     }
-
 }
