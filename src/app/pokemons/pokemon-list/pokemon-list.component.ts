@@ -15,8 +15,9 @@ import {Pokemon} from "../models/pokemon.model";
 export class PokemonListComponent implements OnInit {
 
     data: Pokemon[];
-    limit = 0;
+    limit = 20;
     limitMax = 151;
+    search!: string;
 
     @Output() getPokemonDetailsEmitter = new EventEmitter<Pokemon>();
 
@@ -24,7 +25,7 @@ export class PokemonListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.pokemonService.getPokemons(this.limit += 20).subscribe(myResult => {
+        this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
             this.data = [...myResult.data];
         });
     }
@@ -39,6 +40,18 @@ export class PokemonListComponent implements OnInit {
 
     getPokemonDetails(pokemon: Pokemon): void {
         this.getPokemonDetailsEmitter.emit(pokemon);
+    }
+
+    searchPokemon(event: any): void {
+        if (event != '' && event != undefined) {
+            this.pokemonService.getPokemonsBySearch(event).subscribe(myResult => {
+                this.data = myResult.data;
+            });
+        } else {
+            this.pokemonService.getPokemons(this.limit).subscribe(myResult => {
+                this.data = myResult.data;
+            });
+        }
     }
 
 }

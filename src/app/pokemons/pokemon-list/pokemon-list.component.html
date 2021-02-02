@@ -2,6 +2,10 @@
           infiniteScroll
           (scrolled)="onScroll()"
           [scrollWindow]="false">
+    <mat-form-field appearance="fill">
+        <mat-label>Input</mat-label>
+        <input matInput [ngModel]="search" (ngModelChange)="searchPokemon($event)">
+    </mat-form-field>
     <mat-list-item *ngFor="let pokemon of data">
         <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">
         <a matLine (click)="getPokemonDetails(pokemon)" style="color: white">

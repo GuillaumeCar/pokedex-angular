@@ -41,7 +41,7 @@ export class PokemonDetailsComponent implements OnInit, OnChanges {
 
     getPokemon(): void {
         const id = +this.route.snapshot.paramMap!.get('id');
-        if (id != null) {
+        if (id != null && id != 0) {
             this.pokemonService.getPokemonInfoById(id).subscribe(myResult => this.pokemon = myResult);
         }
     }
