@@ -41,7 +41,7 @@ export class PokemonListComponent implements OnInit {
             debounceTime(250)
         ).subscribe((v) => {
             if (v !== '') {
-                this.pokemonService.getPokemonsBySearch(v).subscribe((myResult) => {
+                this.pokemonService.getPokemons(null, null, v).subscribe((myResult) => {
                     this.data = myResult.data;
                 });
             } else {

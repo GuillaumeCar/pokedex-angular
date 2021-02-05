@@ -8,4 +8,5 @@ export interface ApiResponse {
     height: number;
     weight: number;
     types: any;
+
 }

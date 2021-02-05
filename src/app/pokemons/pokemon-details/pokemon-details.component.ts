@@ -20,6 +20,7 @@ export class PokemonDetailsComponent implements OnInit, OnChanges {
     @Input() pokemon?: PokemonDetails;
     isTTSAvailable: boolean;
     textToSpeech?: SpeechSynthesisUtterance;
+    imageShake = true;
 
     constructor(
         private route: ActivatedRoute,
@@ -49,16 +50,23 @@ export class PokemonDetailsComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes.pokemon.currentValue) {
             if (changes.pokemon.currentValue != changes.pokemon.previousValue) {
+                this.imageShake = false;
                 this.pokemonService.getPokemonInfoById(changes.pokemon.currentValue.id).subscribe(myResult => {
                     this.pokemon = myResult;
-                    this.textToSpeech.text = this.pokemon.description;
                     if (this.isTTSAvailable) {
                         window.speechSynthesis.cancel();
+                        this.textToSpeech.text = this.pokemon.description;
                         setTimeout(() => window.speechSynthesis.speak(this.textToSpeech), 2000);
                     }
+                    this.imageShake = true;
                 });
             }
         }
+    }
+
+    shake(): void {
+        this.imageShake = false;
+        setTimeout(() => this.imageShake = true, 50);
     }
 
     // goBack(): void {

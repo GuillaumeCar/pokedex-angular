@@ -4,7 +4,7 @@
           [scrollWindow]="false">
     <mat-form-field appearance="fill" color="accent">
         <mat-label>Input</mat-label>
-        <input #searchBox matInput [ngModel]="search" (ngModelChange)="searchPokemon($event)">
+        <input class="text-input" #searchBox matInput [ngModel]="search" (ngModelChange)="searchPokemon($event)">
     </mat-form-field>
     <mat-list-item *ngFor="let pokemon of data">
         <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">

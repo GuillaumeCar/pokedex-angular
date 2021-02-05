@@ -4,7 +4,7 @@
         <mat-grid-list cols="2" rowHeight="150px">
             <mat-grid-tile [colspan]="1" [rowspan]="2">
                 <div style="text-align: center">
-                    <img class="pokemon-image" mat-card-sm-image src="assets/img/official-artwork/{{pokemon.id}}.png"><br>
+                    <img class="pokemon-image animate__animated" [class.animate__tada]="imageShake" mat-card-sm-image src="assets/img/official-artwork/{{pokemon.id}}.png"><br>
                     <div>No. {{pokemon.id | number : '3.0'}}</div>
                 </div>
             </mat-grid-tile>
@@ -12,7 +12,7 @@
                 <mat-list>
                     <mat-list-item>
                         <span>{{pokemon.name}} </span>
-                        <mat-icon class="play-button" (click)="pokemonSound.play()">play_circle_outline</mat-icon>
+                        <mat-icon class="play-button" (click)="pokemonSound.play(); shake()">play_circle_outline</mat-icon>
                         <audio #pokemonSound autoplay controls src="assets/audio/{{pokemon.id}}.mp3"></audio>
                     </mat-list-item>
                     <mat-list-item>

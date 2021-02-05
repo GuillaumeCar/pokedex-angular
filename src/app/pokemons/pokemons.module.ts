@@ -14,10 +14,12 @@ import {InfiniteScrollModule} from "ngx-infinite-scroll";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import { TeamComponent } from './team/team.component';
 
 
 @NgModule({
-    declarations: [PokemonListComponent, PokemonDetailsComponent, PokedexComponent],
+    declarations: [PokemonListComponent, PokemonDetailsComponent, PokedexComponent, LoginComponent, TeamComponent],
     imports: [
         CommonModule,
         MatListModule,

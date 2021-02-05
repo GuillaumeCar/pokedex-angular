@@ -3,8 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io'
+    production: false,
+    pokemonsUrl: 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io/pokemons',
+    loginUrl: 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io/auth/login',
+    trainerUrl: 'http://app-ec21e68e-3e55-42d7-b1ae-3eef7507a353.cleverapps.io/trainer'
 };
 
 /*
