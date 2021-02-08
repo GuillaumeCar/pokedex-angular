@@ -11,7 +11,7 @@
 - Mise en forme des données via les composants de material
 - Mise en place du scroll infini via le module [InfiniteScroll](https://github.com/orizens/ngx-infinite-scroll)
 
-### [WIP] Branche *tp2* : Partie 2 du TP pokedex 
+### Branche *tp2* : Partie 2 du TP pokedex 
 
 [Sujet](https://bisonfoutu.github.io/ng-reveal/#/6)
 
@@ -21,3 +21,15 @@ d'un pokémon selectionné
 - Création d'un event
 - Mise à jour des données affichées du pokémon selectionné
 - Mise en place d'un TTS pour la description 
+- Recherche des pokemons via le nom / id
+- Debounce time pour ne pas faire des appels API inutiles
+
+### [WIP] Branche *tp3* : Dernière partie du Pokedex
+
+[Sujet](https://bisonfoutu.github.io/ng-reveal/#/7)
+
+### Notions abordées
+- Formulaire de connexion
+- Mise en place d'un AuthGuard pour bloquer l'accès à certaines pages
+- Connexion via appel API et gestion des appels nécessitant un token de connexion
+- Affichage de l'équipe de l'utilisateur connecté
