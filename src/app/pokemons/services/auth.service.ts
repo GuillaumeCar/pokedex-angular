@@ -11,7 +11,7 @@ import {tap} from "rxjs/operators";
 export class AuthService {
 
     logged = false;
-    reponse: LoginResponse;
+    response: LoginResponse;
 
     constructor(private http: HttpClient) {
     }
@@ -23,7 +23,7 @@ export class AuthService {
                 password: password
             }).pipe(tap(response => {
                 if (response.access_token) {
-                    this.reponse = response;
+                    this.response = response;
                     this.logged = true;
                 }
             }));
@@ -36,8 +36,13 @@ export class AuthService {
 
     logout(): void {
         this.logged = false;
-        this.reponse = undefined;
+        this.response = undefined;
     }
 
+    getToken(): string {
+      if (this.response !== undefined) {
+        return this.response.access_token;
+      }
+    }
 
 }

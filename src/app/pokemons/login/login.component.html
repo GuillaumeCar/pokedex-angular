@@ -1,5 +1,5 @@
-<div class="container login">
-    <section>
+<mat-card class="login-card">
+  <h1>Login</h1>
         <form (ngSubmit)="login()" #loginForm="ngForm">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -18,5 +18,4 @@
         <div class="alert alert-danger" *ngIf="showLoginWarningMessage" role="alert">
             Email ou mot de passe invalide.s
         </div>
-    </section>
-</div>
+</mat-card>

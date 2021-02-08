@@ -9,7 +9,7 @@ import {TeamComponent} from "./pokemons/team/team.component";
 
 const routes: Routes = [
     {path: 'pokemons', component: PokemonListComponent},
-    {path: 'pokedex', component: PokedexComponent},// canActivate: [AuthGuard]},
+    {path: 'pokedex', component: PokedexComponent, canActivate: [AuthGuard]},
     {path: 'details/:id', component: PokemonDetailsComponent},
     {path: 'login', component: LoginComponent},
     // {path: 'team', component: TeamComponent},

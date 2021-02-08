@@ -1,1 +1,18 @@
-<p>team works!</p>
+<mat-card class="team-card">
+  <mat-grid-list cols="3" rowHeight="180px">
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+      <img src="assets/img/trainer.png">
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+      <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+        <mat-chip *ngFor="let pokemon of pokemonTeam" (removed)="remove(pokemon)">
+          <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">
+            <span> {{pokemon.id}}. </span>
+            <span> {{pokemon.name}} </span>
+          <div class="remove"><mat-icon matChipRemove>cancel</mat-icon></div>
+
+        </mat-chip>
+      </mat-chip-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>

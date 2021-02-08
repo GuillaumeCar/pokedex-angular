@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
 
     email = '';
     password = '';
-    showLoginWarningMessage: boolean = false;
-    returnUrl: string = '';
+    showLoginWarningMessage = false;
+    returnUrl = '';
 
     constructor(
         private auth: AuthService,
@@ -21,27 +21,19 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute) {
     }
 
-    ngOnInit() {
-        if (this.auth.isLoggedIn()) {
-            //update your logic accordingly
-            //this will trigger while user clicks on back button,
-            //before naviagting to login page
-            alert('You will be logged out');
-        }
-        this.auth.logout();
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'dashboard';
+    ngOnInit(): void {
     }
 
-    login() {
+    login(): void {
         this.showLoginWarningMessage = false;
         this.auth.login(this.email, this.password).subscribe((response: LoginResponse) => {
-            console.log(this.auth.isLoggedIn());
             if (this.auth.isLoggedIn()) {
-                this.router.navigate([""]);
+                this.router.navigate(['']);
             } else {
                 this.showLoginWarningMessage = true;
             }
         });
     }
+
 
 }
