@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Pokemon} from "../models/pokemon.model";
+import {Pokemon} from '../models/pokemon.model';
 
 @Component({
     selector: 'app-pokedex',
@@ -24,8 +24,8 @@ export class PokedexComponent implements OnInit {
     onAddToTeam($event: number): void {
         if (this.pokemonToAdd && this.pokemonToAdd == $event) {
             console.log(this.pokemonToAdd, $event);
-            this.pokemonToAdd = undefined
+            this.pokemonToAdd = undefined;
         }
-        setTimeout(() => this.pokemonToAdd = $event, 50);
+        setTimeout(() => this.pokemonToAdd = $event, 10);
     }
 }

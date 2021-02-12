@@ -7,9 +7,9 @@
     <mat-grid-tile [colspan]="2" [rowspan]="2">
       <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
         <mat-chip *ngFor="let pokemon of pokemonTeam" (removed)="remove(pokemon)">
-          <img matListAvatar src="assets/img/sprites/{{pokemon.id}}.png" alt="{{pokemon.name}}">
-            <span> {{pokemon.id}}. </span>
-            <span> {{pokemon.name}} </span>
+          <img matListAvatar src="assets/img/sprites/{{pokemon.data[0].id}}.png" alt="{{pokemon.data[0].name}}">
+            <span> {{pokemon.data[0].id}}. </span>
+            <span> {{pokemon.data[0].name}} </span>
           <div class="remove"><mat-icon matChipRemove>cancel</mat-icon></div>
         </mat-chip>
       </mat-chip-list>

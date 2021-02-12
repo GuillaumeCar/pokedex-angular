@@ -1,8 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {AuthService} from "../services/auth.service";
+import {AuthService} from '../services/auth.service';
 import {TrainerService} from '../services/trainer.service';
 import {PokemonService} from '../services/pokemon.service';
-import {ApiResponse} from "../models/apiResponse.model";
+import {ApiResponse} from '../models/apiResponse.model';
+import {forkJoin, Observable} from 'rxjs';
 
 @Component({
     selector: 'app-team',
@@ -17,9 +18,9 @@ export class TeamComponent implements OnInit, OnChanges {
     @Input() pokemonIdToAdd?: number;
 
     constructor(
-      private authService: AuthService,
-      private trainerService: TrainerService,
-      private pokemonService: PokemonService
+        private authService: AuthService,
+        private trainerService: TrainerService,
+        private pokemonService: PokemonService
     ) {
     }
 
@@ -31,35 +32,30 @@ export class TeamComponent implements OnInit, OnChanges {
 
     getTeam(): void {
         this.pokemonTeam = [];
-        this.trainerService.getTeam(this.authService.getToken()).subscribe(res => {
-            this.team = res;
-            this.team.forEach(e => {
-                this.pokemonService.getPokemons(null, null, e.toString()).subscribe(pok => {
-                    this.pokemon = pok;
-                    this.pokemonTeam.push(this.pokemon.data[0]);
-                    this.pokemonTeam.sort((a, b) => {
-                        if (a.id > b.id) {
-                            return 1;
-                        }
-                        if (a.id < b.id) {
-                            return -1;
-                        }
-                        return 0;
-                    });
-                });
+
+        this.trainerService.getTeam(this.authService.getToken()).subscribe((result) => {
+            this.team = result;
+            const forkArray: Observable<any>[] = result.map((id) => this.pokemonService.getPokemons(null, null, id.toString()));
+            forkJoin(forkArray).subscribe(team => {
+                this.pokemonTeam = team;
             });
         });
     }
 
     remove(pok: any): void {
+        console.log(this.team);
         this.removeElementFromArray(this.pokemonTeam, pok);
-        this.removeElementFromArray(this.team, pok.id);
+        this.removeElementFromArray(this.team, pok.data[0].id);
+        console.log(this.team);
         this.trainerService.setTeam(this.team, this.authService.getToken());
     }
 
     removeElementFromArray(array: any[], element: any) {
-        array.forEach((value,index)=>{
-            if(value == element) array.splice(index,1);
+        array.forEach((value, index) => {
+            if (value == element) {
+                array.splice(index, 1);
+                return;
+            }
         });
     }
 
@@ -75,7 +71,7 @@ export class TeamComponent implements OnInit, OnChanges {
                 this.trainerService.setTeam(this.team, this.authService.getToken());
                 this.pokemonService.getPokemons(null, null, changes.pokemonIdToAdd.currentValue).subscribe(pok => {
                     this.pokemon = pok;
-                    this.pokemonTeam.push(this.pokemon.data[0]);
+                    this.pokemonTeam.push(this.pokemon);
                 });
             }
         }

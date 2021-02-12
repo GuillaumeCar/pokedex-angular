@@ -5,10 +5,10 @@ import {
     OnInit,
     SimpleChanges
 } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Location} from "@angular/common";
-import {PokemonDetails} from "../models/pokemon-details.model";
-import {PokemonService} from "../services/pokemon.service";
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
+import {PokemonDetails} from '../models/pokemon-details.model';
+import {PokemonService} from '../services/pokemon.service';
 
 @Component({
     selector: 'app-pokemon-details',
@@ -30,6 +30,7 @@ export class PokemonDetailsComponent implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
+        window.speechSynthesis.cancel();
         this.getPokemon();
         if ('speechSynthesis' in window) {
             this.isTTSAvailable = true;
