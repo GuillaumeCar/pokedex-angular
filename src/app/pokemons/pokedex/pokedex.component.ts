@@ -9,6 +9,7 @@ import {Pokemon} from "../models/pokemon.model";
 export class PokedexComponent implements OnInit {
 
     selectedPokemon?: Pokemon;
+    pokemonToAdd?: number;
 
     constructor() {
     }
@@ -18,5 +19,13 @@ export class PokedexComponent implements OnInit {
 
     onGetPokemonDetails($event: Pokemon): void {
         this.selectedPokemon = $event;
+    }
+
+    onAddToTeam($event: number): void {
+        if (this.pokemonToAdd && this.pokemonToAdd == $event) {
+            console.log(this.pokemonToAdd, $event);
+            this.pokemonToAdd = undefined
+        }
+        setTimeout(() => this.pokemonToAdd = $event, 50);
     }
 }

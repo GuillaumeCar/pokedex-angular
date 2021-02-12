@@ -1,3 +1,4 @@
+<button (click)="logout()">logout</button>
 <mat-card class="team-card">
   <mat-grid-list cols="3" rowHeight="180px">
     <mat-grid-tile [colspan]="1" [rowspan]="2">
@@ -10,7 +11,6 @@
             <span> {{pokemon.id}}. </span>
             <span> {{pokemon.name}} </span>
           <div class="remove"><mat-icon matChipRemove>cancel</mat-icon></div>
-
         </mat-chip>
       </mat-chip-list>
     </mat-grid-tile>

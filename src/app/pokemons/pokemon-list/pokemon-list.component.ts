@@ -25,6 +25,7 @@ export class PokemonListComponent implements OnInit {
     private searchBox!: ElementRef;
 
     @Output() getPokemonDetailsEmitter = new EventEmitter<Pokemon>();
+    @Output() addToTeamEmitter = new EventEmitter<number>();
 
     constructor(private pokemonService: PokemonService) {
     }
@@ -64,6 +65,10 @@ export class PokemonListComponent implements OnInit {
 
     getPokemonDetails(pokemon: Pokemon): void {
         this.getPokemonDetailsEmitter.emit(pokemon);
+    }
+
+    addToTeam(pokemon: Pokemon): void {
+        this.addToTeamEmitter.emit(pokemon.id);
     }
 
     searchPokemon(event: any): void {

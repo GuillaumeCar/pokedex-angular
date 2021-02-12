@@ -1,10 +1,10 @@
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer mode="side" opened>
-        <app-pokemon-list (getPokemonDetailsEmitter)="onGetPokemonDetails($event)"></app-pokemon-list>
+        <app-pokemon-list (addToTeamEmitter)="onAddToTeam($event)" (getPokemonDetailsEmitter)="onGetPokemonDetails($event)"></app-pokemon-list>
     </mat-drawer>
     <mat-drawer-content>
         <app-pokemon-details [pokemon]="selectedPokemon"></app-pokemon-details>
         <hr>
-        <app-team></app-team>
+        <app-team [pokemonIdToAdd]="pokemonToAdd"></app-team>
     </mat-drawer-content>
 </mat-drawer-container>
