@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {LoginResponse} from "../models/loginResponse.model";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -10,15 +11,13 @@ import {LoginResponse} from "../models/loginResponse.model";
 })
 export class LoginComponent implements OnInit {
 
-    email = '';
-    password = '';
+    email = environment.email;
+    password = environment.password;
     showLoginWarningMessage = false;
-    returnUrl = '';
 
     constructor(
         private auth: AuthService,
-        private router: Router,
-        private route: ActivatedRoute) {
+        private router: Router) {
     }
 
     ngOnInit(): void {
@@ -27,7 +26,16 @@ export class LoginComponent implements OnInit {
     login(): void {
         this.showLoginWarningMessage = false;
         this.auth.login(this.email, this.password).subscribe((response: LoginResponse) => {
-            console.log(response);
+            if (this.auth.isLoggedIn()) {
+                this.router.navigate(['']);
+            } else {
+                this.showLoginWarningMessage = true;
+            }
+        });
+    }
+
+    register(): void {
+        this.auth.register(this.email, this.password).subscribe((response: LoginResponse) => {
             if (this.auth.isLoggedIn()) {
                 this.router.navigate(['']);
             } else {

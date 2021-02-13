@@ -14,12 +14,12 @@ export class TrainerService {
     }
 
     getTeam(token: string): Observable<number[]> {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' +  token);
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
         return this.http.get<number[]>(environment.trainerUrl + '/me/team', {headers});
     }
 
     setTeam(team: number[], token: string): void {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' +  token);
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
         this.http.put<LoginResponse>(environment.trainerUrl + '/me/team', team, {headers}).subscribe(response => {
             if (null !== response && response.statusCode == "401") {
                 if (this.authService.refresh()) {

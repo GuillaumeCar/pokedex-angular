@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import {TrainerService} from '../services/trainer.service';
 import {PokemonService} from '../services/pokemon.service';
@@ -16,6 +16,9 @@ export class TeamComponent implements OnInit, OnChanges {
     pokemonTeam = [];
     pokemon: ApiResponse;
     @Input() pokemonIdToAdd?: number;
+
+    @ViewChild('alert')
+    private alert!: ElementRef;
 
     constructor(
         private authService: AuthService,
@@ -71,7 +74,14 @@ export class TeamComponent implements OnInit, OnChanges {
                     this.pokemon = pok;
                     this.pokemonTeam.push(this.pokemon);
                 });
+            } else {
+                this.alert.nativeElement.classList.add('show');
+                console.log();
             }
         }
+    }
+
+    closeModal(): void {
+        this.alert.nativeElement.classList.remove('show');
     }
 }

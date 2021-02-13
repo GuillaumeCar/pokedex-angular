@@ -12,7 +12,6 @@ const routes: Routes = [
     {path: 'pokedex', component: PokedexComponent, canActivate: [AuthGuard]},
     {path: 'details/:id', component: PokemonDetailsComponent},
     {path: 'login', component: LoginComponent},
-    // {path: 'team', component: TeamComponent},
     {path: '', redirectTo: '/pokedex', pathMatch: 'full'},
 
 ];

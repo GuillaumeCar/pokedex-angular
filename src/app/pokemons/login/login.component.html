@@ -1,6 +1,6 @@
 <mat-card class="login-card">
   <h1>Login</h1>
-        <form (ngSubmit)="login()" #loginForm="ngForm">
+        <form #loginForm="ngForm">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" [(ngModel)]="email" class="form-control" id="exampleInputEmail1" name="emailId" aria-describedby="emailHelp"
@@ -12,7 +12,8 @@
                        required>
             </div>
 
-            <button type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+            <button (click)="login()" type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Login</button>
+            <button (click)="register()" type="submit" class="btn btn-primary" [disabled]="!loginForm.form.valid">Register</button>
         </form>
         <br>
         <div class="alert alert-danger" *ngIf="showLoginWarningMessage" role="alert">

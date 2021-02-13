@@ -16,3 +16,10 @@
     <button mat-button (click)="logout()">Log out</button>
   </mat-grid-list>
 </mat-card>
+
+<div #alert class="alert alert-warning alert-dismissible fade" role="alert">
+  Impossible d'ajouter plus de pokémon, l'équipe est déjà complète !
+  <button (click)="closeModal()" type="button" class="close" aria-label="Close">
+    <span aria-hidden="false">&times;</span>
+  </button>
+</div>

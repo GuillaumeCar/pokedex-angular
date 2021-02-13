@@ -25,15 +25,6 @@ export class AuthGuard implements CanActivate {
                 }
             });
             return false;
-            // }
-
-
-            // if (this.authService.isLoggedIn()) {
-            //     return true;
-            // }
-            // window.alert('You don\'t have permission to view this page');
-            // return false;
         }
     }
-
 }

@@ -6,7 +6,6 @@ import {
     SimpleChanges
 } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
 import {PokemonDetails} from '../models/pokemon-details.model';
 import {PokemonService} from '../services/pokemon.service';
 
@@ -24,8 +23,7 @@ export class PokemonDetailsComponent implements OnInit, OnChanges {
 
     constructor(
         private route: ActivatedRoute,
-        private pokemonService: PokemonService,
-        private location: Location
+        private pokemonService: PokemonService
     ) {
     }
 

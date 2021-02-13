@@ -16,17 +16,32 @@ export class AuthService {
     constructor(private http: HttpClient, private router: Router) {
     }
 
-    login(email?: string, password?: string, refreshToken?: string): Observable<LoginResponse> {
+    login(email?: string, password?: string): Observable<LoginResponse> {
         if (email && password) {
             return this.http.post<LoginResponse>(environment.authUrl + '/login', {
                 email: email,
                 password: password
             }).pipe(tap(response => {
-                console.log("rrr");
                 if (response.access_token) {
                     localStorage.setItem("t", response.access_token);
                     localStorage.setItem("r", response.refresh_token);
-                    localStorage.setItem("e", response.expire_in);
+                    localStorage.setItem("e", response.expires_in);
+                    this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
+                }
+            }));
+        }
+    }
+
+    register(email?: string, password?: string): Observable<LoginResponse> {
+        if (email && password) {
+            return this.http.post<LoginResponse>(environment.trainerUrl, {
+                email: email,
+                password: password
+            }).pipe(tap(response => {
+                if (response.access_token) {
+                    localStorage.setItem("t", response.idToken);
+                    localStorage.setItem("r", response.refreshToken);
+                    localStorage.setItem("e", response.expiresIn);
                     this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
                 }
             }));
@@ -43,9 +58,9 @@ export class AuthService {
     }
 
     getToken(): string {
-      if (localStorage.getItem("t") !== undefined) {
-        return localStorage.getItem("t");
-      }
+        if (localStorage.getItem("t") !== undefined) {
+            return localStorage.getItem("t");
+        }
     }
 
     getRefreshToken(): string {
@@ -62,7 +77,7 @@ export class AuthService {
                 if (response.access_token) {
                     localStorage.setItem("t", response.access_token);
                     localStorage.setItem("r", response.refresh_token);
-                    localStorage.setItem("e", response.expire_in);
+                    localStorage.setItem("e", response.expires_in);
                     this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
                 }
             }));
