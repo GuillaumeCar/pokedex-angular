@@ -43,18 +43,17 @@ export class TeamComponent implements OnInit, OnChanges {
     }
 
     remove(pok: any): void {
-        console.log(this.team);
         this.removeElementFromArray(this.pokemonTeam, pok);
         this.removeElementFromArray(this.team, pok.data[0].id);
-        console.log(this.team);
         this.trainerService.setTeam(this.team, this.authService.getToken());
     }
 
     removeElementFromArray(array: any[], element: any) {
+        let isDeleted = false;
         array.forEach((value, index) => {
-            if (value == element) {
+            if (!isDeleted && value == element) {
                 array.splice(index, 1);
-                return;
+                isDeleted = true;
             }
         });
     }
@@ -64,7 +63,6 @@ export class TeamComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
         if (undefined !== changes.pokemonIdToAdd.currentValue) {
             if (this.team.length < 6) {
                 this.team.push(changes.pokemonIdToAdd.currentValue);

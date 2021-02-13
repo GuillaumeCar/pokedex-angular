@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
     login(): void {
         this.showLoginWarningMessage = false;
         this.auth.login(this.email, this.password).subscribe((response: LoginResponse) => {
+            console.log(response);
             if (this.auth.isLoggedIn()) {
                 this.router.navigate(['']);
             } else {

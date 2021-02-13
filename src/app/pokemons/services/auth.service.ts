@@ -22,12 +22,13 @@ export class AuthService {
                 email: email,
                 password: password
             }).pipe(tap(response => {
+                console.log("rrr");
                 if (response.access_token) {
                     localStorage.setItem("t", response.access_token);
                     localStorage.setItem("r", response.refresh_token);
                     localStorage.setItem("e", response.expire_in);
+                    this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
                 }
-                this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
             }));
         }
     }
@@ -65,6 +66,7 @@ export class AuthService {
                     this.expiration = setTimeout(() => this.tokenExpired(), parseInt(localStorage.getItem("e")));
                 }
             }));
+            return true;
         }
         return false
     }

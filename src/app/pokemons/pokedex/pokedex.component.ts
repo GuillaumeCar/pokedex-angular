@@ -23,7 +23,6 @@ export class PokedexComponent implements OnInit {
 
     onAddToTeam($event: number): void {
         if (this.pokemonToAdd && this.pokemonToAdd == $event) {
-            console.log(this.pokemonToAdd, $event);
             this.pokemonToAdd = undefined;
         }
         setTimeout(() => this.pokemonToAdd = $event, 10);

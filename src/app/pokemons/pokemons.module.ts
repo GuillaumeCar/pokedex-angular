@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { TeamComponent } from './team/team.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TeamComponent } from './team/team.component';
         MatSidenavModule,
         MatFormFieldModule,
         MatInputModule,
-        FormsModule
+        FormsModule,
+        MatButtonModule,
     ]
 })
 export class PokemonsModule {
